@@ -15,7 +15,7 @@ public class SampleController {
 	@RequestMapping("home")
 	public String loadHomePage(Model m) {
 		log.info("Entered to the loadHomePage method in SampleController ");
-		m.addAttribute("name", "CodeTutr");
+		m.addAttribute("name", "Kasun... U did it");
 		return "home";
 	}
 
