@@ -1,18 +1,42 @@
+buildscript {
+    repositories {
+        maven { url "http://repo.spring.io/libs-snapshot" }
+        mavenLocal()
+    }
+}
+
 apply plugin: 'war'
 apply plugin: 'jetty'
 apply plugin: 'eclipse-wtp'
+apply plugin: 'java'
+apply plugin: 'idea'
+
+jar {
+    baseName = 'spring-mvc'
+    version =  '0.1.0'
+}
 
 repositories {
    mavenCentral()
+   maven { url "http://repo.spring.io/libs-snapshot" }
 }
 
 dependencies {
    providedCompile 'javax.servlet:servlet-api:2.5'
    compile 'org.springframework:spring-webmvc:3.2.2.RELEASE',
-   			'org.slf4j:slf4j-api:1.7.5',
+       		'org.springframework.boot:spring-boot-starter-web:0.5.0.M6',
+    		'org.springframework.boot:spring-boot-starter-security:0.5.0.M6',
+    		'org.thymeleaf:thymeleaf-spring3:2.0.16',
+    		'org.slf4j:slf4j-api:1.7.5',
    			'org.slf4j:slf4j-log4j12:1.7.5',
    			'log4j:log4j:1.2.17'
+	testCompile("junit:junit:4.11")
+  
    runtime 'javax.servlet:jstl:1.1.2'
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '1.8'
 }
 
 /* Change context path (base url). otherwise defaults to name of project */
